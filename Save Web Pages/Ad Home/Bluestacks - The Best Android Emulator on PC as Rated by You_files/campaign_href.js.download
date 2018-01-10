@@ -1,0 +1,32 @@
+$(document).ready(function(){
+
+    if(gup('utm_campaign')){
+
+        var links = $("a");
+        for(var i = 0; i < links.length; ++i){
+            var link = links[i];
+            var href = $(link).attr("href");
+            if(href && href.toLowerCase().indexOf("download.html") != -1){
+                if (href.indexOf('utm_campaign') > -1) {
+                    // if an utm_campaign already exists on the link in the button,
+                    // replace the value of that parameter
+                    var updated_link = href.replace(/(utm_campaign=)[^\&]+/, '$1' + gup('utm_campaign'));
+                    $(link).attr("href", updated_link);
+                } else {
+                    $(link).attr("href", href+ "?utm_campaign=" + gup('utm_campaign'));
+                }
+            }
+
+        }
+
+    }
+
+    function gup( name, url ) {
+      if (!url) url = location.href;
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( url );
+      return results == null ? null : results[1];
+}
+});

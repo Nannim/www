@@ -1,0 +1,64 @@
+useragent = window.navigator.userAgent;
+os = 'windows';
+version = '';
+change_log= '';
+
+if(useragent.indexOf('Windows') != -1) {
+    if(useragent.indexOf('Windows NT 5.1') != -1)
+        os = 'windows_xp';
+    }
+else {
+ if(useragent.indexOf('Macintosh') != -1)
+        os = 'mac'
+ }
+
+get_lang = getCookie("preferred_lang");
+
+is_mac_available = false;
+
+$.ajax({
+    url: "https://bluestacks-cloud.appspot.com/api/web/getversion",
+    type: "POST"
+    }).done(function(data) {
+        version_obj = JSON.parse(data);
+
+        for(var key in version_obj)
+        {
+            if((version_obj[key]['is_mac'] == true) && (os == 'mac'))
+            {
+                version = 'v' + key + ' for Mac';
+                for(var row in version_obj[key]['change_log'])
+                {
+                     if(get_lang.toLowerCase() == row.toLowerCase())
+                     {
+                         change_log = version_obj[key]['change_log'][row];
+                         break;
+                     }
+                }
+
+                break;
+            }
+
+            else if((version_obj[key]['is_mac'] == false) && (os!='mac'))
+            {
+                version = 'v' + key + ' for Windows';
+                for(var row in version_obj[key]['change_log'])
+                {
+                     if(get_lang.toLowerCase() == row.toLowerCase())
+                     {
+                         change_log = version_obj[key]['change_log'][row];
+                         break;
+                     }
+                }
+
+            }
+
+        }
+
+        $('.version-info').text(version);
+        $('.change-log').html(change_log);
+
+    }).error(function(){
+        console.log("Error in call to cloud.")
+});
+

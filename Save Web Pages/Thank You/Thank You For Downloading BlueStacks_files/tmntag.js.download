@@ -1,0 +1,521 @@
+
+/* placementID:2541 */
+tmntag.account('/10518929/tmn.tgus/dldDetails/Software/Utilities');
+tmntag.target({'site':'tmn.tgus','partner':'n','oop':'"true"','stype':'download','ctype':'Downloads_thankyou'});
+
+
+tmntag.placements=["2541"];
+
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a1-p1-s1',div:'header_leaderboard',sizeMapping:[[[990,0],[[970,66],[728,90],[990,90],[970,90],[990,200],[990,250],[970,250]]], [[970,0],[[970,66],[728,90],[970,90],[970,250]]], [[728,0],[[728,90]]], [[0,0],[[320,50],[320,100],[320,200]]]],sizes:[[970,66],[728,90],[990,90],[970,90],[990,200],[990,250],[970,250]],targeting:{'_p':'1','_a':'1'}});
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a1-p1-s2',div:'rightcol_top',sizeMapping:[[[970,0],[[300,250],[250,250],[300,600],[300,1050]]], [[0,0],[]]],sizes:[[300,250],[250,250],[300,600],[300,1050]],targeting:{'_p':'1','_a':'1'}});
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a0-p1-s2',div:'rightcol_bottom',sizeMapping:[[[970,0],[[300,250],[250,250],[300,600],[300,1050]]],[[0,0],[]]],sizes:[[300,250],[250,250],[300,600],[300,1050]],targeting:{'_p':'1','_a':'0'}});
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a1-p1-s44',div:'in-content',sizes:[[330,120],[320,100],[320,200],[320,50]],targeting:{'_p':'1','_a':'1','anchor':['1']}});
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a1-p1-s0',div:'out-of-page',targeting:{'_p':'1','_a':'1'}});
+tmntag.adunit({account:'/10518929/tmn.tgus/dldDetails/Software/Utilities/a1-p1-s81',div:'1x1',sizes:[[1,1]],targeting:{'_p':'1','_a':'1'}});
+
+if (typeof tmntag==='undefined') tmntag={};
+tmntag.pubtargets = [];
+tmntag.pubtargets.push(['oop', 'true']);
+tmntag.pubtargets.push(['1153', '1']);
+tmntag.pubtargets.push(['stype', 'download']);
+tmntag.pubtargets.push(['ctype', 'Downloads_thankyou']);
+tmntag.pubtargets.push(['_rid', '8515284181909241177']);
+tmntag.pubtargets.push(['_c', '1']);
+tmntag.pubtargets.push(['partner', 'n']);
+tmntag.pubtargets.push(['site', 'tmn.tgus']);
+tmntag.pubtargets.push(['TUUID', 'C2198EB6FE6545F8A82BBA2ABDF15E55']);
+tmntag.pubtargets.push(['_rid', '8515284181909241177']);
+tmntag.pubtargets.push(['kw', ['Software-Utilities','Software-System']]);
+tmntag.pubtargets.push(['_pgid', '672ecd5b']);
+tmntag.pubtargets.push(['mcat', ['i328']]);
+tmntag.pubtargets.push(['scat', ['p34', 'i71', 'i74']]);
+tmntag.pubtargets.push(['urlhash', 'HBcv6TZ4MD5']);
+tmntag.pubtargets.push(['fr', 'false']);
+tmntag.pubtargets.push(['adt', 'veryLow']);
+tmntag.pubtargets.push(['alc', 'veryLow']);
+tmntag.pubtargets.push(['dlm', 'low']);
+tmntag.pubtargets.push(['drg', 'veryLow']);
+tmntag.pubtargets.push(['hat', 'veryLow']);
+tmntag.pubtargets.push(['off', 'veryLow']);
+tmntag.pubtargets.push(['vio', 'veryLow']);
+tmntag.markups=tmntag.markups||[];
+tmntag.markupsInfo=tmntag.markupsInfo||[];
+tmntag.adtargets=[];
+tmntag.adtargets['in-content']=[];
+tmntag.adtargets['in-content'].push(['_wb', '4']);
+tmntag.adtargets['in-content'].push(['adunit', 'in-content']);
+tmntag.adtargets['in-content'].push(['_p', '1']);
+tmntag.adtargets['in-content'].push(['_a', '1']);
+tmntag.adtargets['in-content'].push(['anchor', '1']);
+tmntag.adtargets['rightcol_top']=[];
+tmntag.adtargets['rightcol_top'].push(['_wb', '2']);
+tmntag.adtargets['rightcol_top'].push(['adunit', 'rightcol_top']);
+tmntag.adtargets['rightcol_top'].push(['_p', '1']);
+tmntag.adtargets['rightcol_top'].push(['_a', '1']);
+tmntag.adtargets['out-of-page']=[];
+tmntag.adtargets['out-of-page'].push(['_wb', '5']);
+tmntag.adtargets['out-of-page'].push(['adunit', 'out-of-page']);
+tmntag.adtargets['out-of-page'].push(['_p', '1']);
+tmntag.adtargets['out-of-page'].push(['_a', '1']);
+tmntag.adtargets['header_leaderboard']=[];
+tmntag.adtargets['header_leaderboard'].push(['_wb', '1']);
+tmntag.adtargets['header_leaderboard'].push(['adunit', 'header_leaderboard']);
+tmntag.adtargets['header_leaderboard'].push(['_p', '1']);
+tmntag.adtargets['header_leaderboard'].push(['_a', '1']);
+tmntag.adtargets['rightcol_bottom']=[];
+tmntag.adtargets['rightcol_bottom'].push(['_wb', '3']);
+tmntag.adtargets['rightcol_bottom'].push(['adunit', 'rightcol_bottom']);
+tmntag.adtargets['rightcol_bottom'].push(['_p', '1']);
+tmntag.adtargets['rightcol_bottom'].push(['_a', '0']);
+tmntag.adtargets['1x1']=[];
+tmntag.adtargets['1x1'].push(['_wb', '6']);
+tmntag.adtargets['1x1'].push(['adunit', '1x1']);
+tmntag.adtargets['1x1'].push(['_p', '1']);
+tmntag.adtargets['1x1'].push(['_a', '1']);
+tmntag.adtargets['1x1']=tmntag.adtargets['1x1']||[];
+tmntag.adtargets['header_leaderboard']=tmntag.adtargets['header_leaderboard']||[];
+tmntag.adtargets['rightcol_bottom']=tmntag.adtargets['rightcol_bottom']||[];
+tmntag.adtargets['rightcol_top']=tmntag.adtargets['rightcol_top']||[];
+tmntag.adtargets['in-content']=tmntag.adtargets['in-content']||[];
+tmntag.adtargets['1x1'].push(['id', 'ecb5869b-f480-11e7-ad57-00259086cc0e']);
+tmntag.adtargets['1x1'].push(['vw', ['40']]);
+tmntag.adtargets['header_leaderboard'].push(['id', 'ecb5868e-f480-11e7-ad57-00259086cc0e']);
+tmntag.adtargets['header_leaderboard'].push(['vw', ['40']]);
+tmntag.adtargets['rightcol_bottom'].push(['id', 'ecb58696-f480-11e7-ad57-00259086cc0e']);
+tmntag.adtargets['rightcol_bottom'].push(['vw', ['40']]);
+tmntag.adtargets['rightcol_top'].push(['id', 'ecb58692-f480-11e7-ad57-00259086cc0e']);
+tmntag.adtargets['rightcol_top'].push(['vw', ['40', '50']]);
+tmntag.adtargets['in-content'].push(['id', 'ecb5869a-f480-11e7-ad57-00259086cc0e']);
+tmntag.adtargets['in-content'].push(['vw', ['40', '50', '60']]);
+tmntag.adtargets['in-content'].push(['pub', ['40']]);
+tmntag.adtargets['in-content'].push(['grm', ['40', '50']]);
+tmntag.adparams=tmntag.adparams||{};
+tmntag.adparams['header_leaderboard']=tmntag.adparams['header_leaderboard']||{};
+tmntag.adparams['header_leaderboard']['ad_label_position']='top_center';
+tmntag.adparams['header_leaderboard']['sort_heights']='true';
+tmntag.adparams['rightcol_top']=tmntag.adparams['rightcol_top']||{};
+tmntag.adparams['rightcol_top']['ad_label_display']='report';
+tmntag.adparams['rightcol_top']['ad_label_position']='bottom_center';
+tmntag.adparams['rightcol_top']['sort_heights']='true';
+tmntag.adparams['rightcol_bottom']=tmntag.adparams['rightcol_bottom']||{};
+tmntag.adparams['rightcol_bottom']['ad_label_display']='report';
+tmntag.adparams['rightcol_bottom']['ad_label_position']='bottom_center';
+tmntag.adparams['in-content']=tmntag.adparams['in-content']||{};
+tmntag.adparams['in-content']['ad_label_display']='report';
+tmntag.adparams['in-content']['ad_label_position']='top_center';
+tmntag.pubtargets.push(['_sw1366', '1']);
+tmntag.pubtargets.push(['_sh0', '1']);
+tmntag.pubtargets.push(['_ex', '|6|4|51|']);
+tmntag.pubtargets.push(['_plc', ['2541']]);
+/* Purch Ad Tag V1.2 */
+TMNTAG_READY=1;
+if (typeof window.context=='undefined' || !window.context) top.window.requestid='8515284181909241177';
+if (typeof window.context=='undefined' || !window.context) top.window.experiments='|6|4|51|';
+if (typeof tmntag.pubtargets!='undefined' && tmntag.pubtargets) {
+  if (typeof tmntag_referrer!='undefined') {
+	var ref = tmntag_referrer();
+	if (ref.indexOf("google")>0) {
+      tmntag.pubtargets.push(["_ts", "gs"]);
+    } else if (ref.indexOf("yahoo")>0) {
+    	tmntag.pubtargets.push(["_ts", "ys"]);
+    } else if (ref.indexOf("bing")>0) {
+    	tmntag.pubtargets.push(["_ts", "bs"]);
+    }
+  }
+}
+if (tmntag.timing) {
+	tmntag.timing.startTag=(new Date().getTime());
+}
+if (typeof googletag!='undefined') {
+  googletag.cmd.push(function() {
+   if(typeof tmntag_defineSlot === "function" && typeof tmntag!='undefined' && typeof tmntag.a!='undefined') {
+	  if (tmntag && tmntag.f==1) {
+		  if (tmntag.adtargets) for (var divId in tmntag.adtargets) {
+			  if (tmntag.adtargets.hasOwnProperty(divId)) {
+				  tmntag_defineAdUnit(divId);
+			  }
+		  }
+	  } else {
+	      for (var i=0; i<tmntag.a.length; i++) {
+	    	 var divId = tmntag.a[i].d;
+	    	 tmntag_defineAdUnit(divId);
+	      }
+	  }
+   } else {
+      tmntag_defineSlots();
+   }
+
+	if(typeof tmntag!='undefined' && typeof tmntag.pubtargets!='undefined') {
+		for (var i=0; i<tmntag.pubtargets.length; i++) {
+			googletag.pubads().setTargeting(tmntag.pubtargets[i][0], tmntag.pubtargets[i][1]);
+		}
+	}
+
+	if(typeof tmntag!='undefined' && typeof tmntag.su!='undefined' && tmntag.su===1 && typeof tmntag.l!='undefined') {
+		googletag.pubads().set("page_url", decodeURIComponent(tmntag.l));
+	}
+
+	if(tmntag.f!==1 && typeof tmntag!='undefined' && typeof tmntag.sr!='undefined' && tmntag.sr==true) {
+		 googletag.pubads().enableSingleRequest();
+	}
+	
+	if(tmntag.f!==1 && typeof tmntag!='undefined' && typeof tmntag_il!='undefined' && tmntag_il==false) {
+		googletag.pubads().disableInitialLoad();
+	}
+	
+	if(tmntag.f!==1 && typeof tmntag!='undefined' && typeof tmntag.ced!='undefined' && tmntag.ced==true) {
+		 googletag.pubads().collapseEmptyDivs();
+	}
+
+	if (tmntag.f!==1) {
+		if (tmntag.timing) {tmntag.timing.startEnableServices=(new Date().getTime());}
+		if (tmntag.instartlogicEnabled!=='function' || !tmntag.instartlogicEnabled()) {
+          googletag.enableServices();
+        }
+		tmntag_setGptLoaded();
+		tmntag_callbacks.executeCallbacks();
+		if (tmntag.timing) {tmntag.timing.endEnableServices=(new Date().getTime());}
+	}
+  });
+  if (tmntag.f!==1) {
+	for (divid in tmntag.slots) {
+		var e = document.getElementById(divid);
+		if (e && typeof e !='undefined' && tmntagDisplayed && tmntagDisplayed[divid]==1) {
+			googletag.cmd.push(function() { googletag.display(divid); });
+		}
+	}
+
+	if(typeof tmntag!='undefined' && typeof tmntag_il!='undefined' && tmntag_il==false){
+		googletag.cmd.push(function() { googletag.pubads().refresh(); });
+	}	
+  }
+}
+if (tmntag.timing) {
+	tmntag.timing.endTag=(new Date().getTime());
+}
+/* /Purch Ad Tag V1.2 */try {
+(function(){
+  if (window.BOOMR && window.BOOMR.version) { return; }
+  var dom,doc,where,iframe = document.createElement("iframe"),win = window;
+
+  function boomerangSaveLoadTime(e) {
+    win.BOOMR_onload=(e && e.timeStamp) || new Date().getTime();
+  }
+  if (win.addEventListener) {
+    win.addEventListener("load", boomerangSaveLoadTime, false);
+  } else if (win.attachEvent) {
+    win.attachEvent("onload", boomerangSaveLoadTime);
+  }
+
+  iframe.src = "javascript:void(0)";
+  iframe.title = ""; iframe.role = "presentation";
+  (iframe.frameElement || iframe).style.cssText = "width:0;height:0;border:0;display:none;";
+  where = document.getElementsByTagName("script")[0];
+  where.parentNode.insertBefore(iframe, where);
+
+  try {
+    doc = iframe.contentWindow.document;
+  } catch(e) {
+    dom = document.domain;
+    iframe.src="javascript:var d=document.open();d.domain='"+dom+"';void(0);";
+    doc = iframe.contentWindow.document;
+  }
+  doc.open()._l = function() {
+    var js = this.createElement("script");
+    if (dom) { this.domain = dom; }
+    js.id = "boomr-if-as";
+    js.src = "https://s.go-mpulse.net/boomerang/" +
+    "4UXSU-KSETN-Y2NRM-A6CPC-JHYFC";
+    BOOMR_lstart=new Date().getTime();
+    this.body.appendChild(js);
+  };
+  doc.write('<body onload="document._l();">');
+  doc.close();
+})();
+} catch (e) {
+console.error(e);
+}
+try {
+/* Facebook Pixel v1.0*/
+try {  
+  var _facebookId = "${PAGE_DOMAIN:FACEBOOK_ID}";
+  if(typeof fbq === 'undefined') {
+  !function(f, b, e, v, n, t, s) {
+    if (_facebookId=='' || _facebookId.indexOf('$')==0) {
+  	   return
+    }
+      if (f.fbq) return;
+      n = f.fbq = function() {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n;
+      n.loaded = !0;
+      n.version = '2.0';
+      n.queue = [];
+      t = b.createElement(e);
+      t.async = !0;
+      t.src = v;
+      s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+  }(window,
+      document, 'script', '//connect.facebook.net/en_US/fbevents.js');
+  fbq('init', _facebookId);
+  fbq('track', 'PageView');
+  }
+} catch (e) {
+    console.log(e);
+}
+/* /Facebook Pixel */
+} catch (e) {
+console.error(e);
+}
+try {
+/* Purch Ad Labeling 1.0.14 */
+tmntag_adlabel = {}
+tmntag_adlabel.setStyle = function(divid,ad_label){
+  var adParams = tmntag.getAdParameters(divid);
+  ad_label.className = 'tmntag_adlabel';
+  ad_label.innerHTML = "Advertisement";
+  ad_label.setAttribute('data-target', divid);
+  var bg_color = (adParams && adParams['ad_label_bg_color']) || '#FFFFFF';
+  var color = (adParams && adParams['ad_label_color']) || 'rgb(0,0,0,0.5)';
+  ad_label.style.setProperty('background-color', bg_color, 'important');
+  ad_label.style.setProperty('color', color, 'important');
+  ad_label.style.padding = '0px 2px 0px 2px';
+  ad_label.style.setProperty('display', 'block', 'important');
+  ad_label.style.setProperty('font-size', '10px', 'important');
+  ad_label.style.setProperty('line-height', '10px', 'important');
+
+  if (adParams && adParams['ad_label_display'] == 'report') {
+    ad_label.innerHTML = "Advertisement";
+    /*ad_label.style.setProperty('cursor', 'pointer', 'important');
+    ad_label.onclick = function(){
+      tmntag.openReportingPopup(divid);
+    }*/
+  }
+  var styleParams = (adParams && adParams['ad_label_style']);
+  if (adParams && styleParams) {
+    styleParams = styleParams.trim().split(';');
+    for (var i = 0; i < styleParams.length; i++) {
+      if(styleParams[i] === ''){continue;}
+      style = styleParams[i].trim().split(':');
+      var importance = null;
+      if (!style[1]){continue;}
+      if (style[1].indexOf('!important') > 0) {
+        style[1] = style[1].replace('!important', '');
+        importance = 'important';
+      }
+      ad_label.style.setProperty(style[0].trim(),style[1].trim(),importance);
+    }
+  }
+  return ad_label;
+}
+tmntag_adlabel.adLabelTopCenter = function(divid, event) {
+  var purch_div = document.getElementById(divid);
+  if(!purch_div){return;}
+  var ad_label = document.createElement('div');
+  ad_label.style.textAlign = 'center';
+  ad_label = tmntag_adlabel.setStyle(divid,ad_label);
+  var insertedNode = purch_div.insertBefore(ad_label, purch_div.childNodes[0]);
+}
+
+tmntag_adlabel.adLabelBottomCenter = function(divid, event) {
+  var purch_div = document.getElementById(divid);
+  var ad_label = document.createElement('div');
+  ad_label.style.textAlign = 'center';
+  ad_label = tmntag_adlabel.setStyle(divid,ad_label);
+  purch_div.appendChild(ad_label);
+};
+
+tmntag_adlabel.render = function(divid, event) {
+  var adParams = tmntag.getAdParameters(divid);
+  if (typeof adParams=='undefined' || !adParams) return;
+  if (document.getElementById(divid).firstChild.className === 'tmntag_adlabel') return;
+  if (adParams['ad_label_display'] === 'label' || adParams['ad_label_display'] == 'report') {
+    if (adParams['ad_label_position'] === 'top_center') {
+      tmntag_adlabel.adLabelTopCenter(divid, event);
+    }else if (adParams['ad_label_position'] === 'bottom_center') {
+      tmntag_adlabel.adLabelBottomCenter(divid, event);
+    }
+  }
+};
+/* /Purch Ad Labeling 1.0.14 */
+} catch (e) {
+console.error(e);
+}
+try {
+(function(){var a="18902";if(a==""||a.indexOf("$")==0)a="20915";window.bk_async=function(){var c="C2198EB6FE6545F8A82BBA2ABDF15E55";if(c!=""&&c.indexOf("$")!=0)bk_addPageCtx("pid","C2198EB6FE6545F8A82BBA2ABDF15E55");BKTAG.doTag(a,4)};(function(){var a=encodeURIComponent(document.referrer?document.referrer:""),d=document.getElementsByTagName("script")[0],b=document.createElement("script");b.async=true;b.src="//tags.bkrtx.com/js/bk-coretag.js?referer="+a;d.parentNode.insertBefore(b,d)})()})();
+} catch (e) {
+console.error(e);
+}
+try {
+window.CONFIANT_WRAPPER_ID="EV--s71bP55vR4HASx1ThUkciXM";
+window.confiantWrap=function(a,b,c,d,e,f){function g(a){return(l(a)||"")[r]("/","_")[r]("+","-")}function h(b,c,d){var e=v+m(b)+"&d="+c,f="err__"+1*new Date;j[f]=d;var g="<"+p+" on"+s+'="void('+f+'())" '+q+'="'+e+'" type="text/java'+p+'" ></'+p+">";a[u](g)}function i(){var c=g(f+"/"+w.k.hb_bidder[0]+":"+w.k.hb_size[0]),d={wh:c,wd:k.parse(k[t](w)),wr:0};h(c,g(k[t](d)),function(){a[u](b)});var e={d:d,t:b};j[f]={},j[f][c]=e}var j=a.parentWindow||a.defaultView,k=j.JSON,l=j.btoa,m=j.encodeURIComponent;if(!k||!l)return!1;var n="t",o="i",p="script",q="src",r="replace",s="error",t="stringify",u="wr"+o+n+"e",v="https://"+e+"/?wrapper="+m(f)+"&tpid=",w={k:{hb_bidder:[c],hb_size:[d]}};return i(),a.close(),!0}
+} catch (e) {
+console.error(e);
+}
+try {
+tmntag_ready(function() {
+
+var _mag=_mag||{};
+(function(a){try{var b="";a.kw="";if(typeof tmntag.pubtargets!="undefined"&&tmntag.pubtargets)for(var d=tmntag.pubtargets.length-1;d>=0;d--){b=tmntag.pubtargets[d];if(b[0]==="kw")a.kw=b[1].toString().replace(/-/g," ").replace(/_/g," ")}a.kw_encoded=0;a.shortName="purch-electronics";a.default_protocol="https:"==document.location.protocol?"https:":"http:";a.startTime=(new Date).getTime();if(a.kw!==""){var b=document,f=a.default_protocol+"//d3ezl4ajpp2zy8.cloudfront.net/purch-electronics_tag.js",c=b.createElement("script");
+c.type="text/javascript";c.async=true;c.src=f;var e=b.getElementsByTagName("head")[0]||b.documentElement;e.insertBefore(c,e.firstChild)}}catch(g){console.log(g)}})(_mag);
+
+});
+} catch (e) {
+console.error(e);
+}
+try {
+tmntag_ready(function() {
+
+  (function(opts) {
+    
+    var init = function() {
+      if (!window.Purch.Jwplayer) { return; }
+      
+      var checkRequire = function () {
+        setTimeout(function () {
+          if (window.require) {
+            window.Purch.JwplayerInstance = new window.Purch.Jwplayer(opts);
+          } else {
+            checkRequire();
+          }
+        }, 1000);
+      };
+
+      opts.checkRequire = opts.checkRequire.indexOf('${') < 0;
+
+      //document.addEventListener('readystatechange', function() {
+      // if (document.readyState === "interactive") {
+      if (opts.checkRequire !== false) {
+        checkRequire();
+      } else {
+        window.Purch.JwplayerInstance = new window.Purch.Jwplayer(opts);
+      }
+      //  }
+      // });
+    };
+    
+    var s = document.createElement('script');
+    s.onload = init;
+    document.head.appendChild(s);
+    s.src = 'https://assets.purch.com/ramp/assets/jwplayer/JWPlayer.js?v=1.5.0';
+  })({
+    gaAccount:'UA-72111741-10',
+    playlistTargetHandler: '${PAGE:JW_PLAYLIST_TARGET_HANDLER}',
+    playlistTarget: '.content > p:nth-of-type(3), .content > article:first-child > p:nth-of-type(3),.listing-page .listing-item:nth-of-type(2), .thread > .more-about',
+    playerId: '${PAGE:JW_PLAYER_ID}',
+    playlistId: 'TELziGUO',
+    rightRail: '${PAGE:JW_RIGHT_RAIL}',
+    container: '#ctBoc > .page, .body-section > .page',
+    settings: '${PAGE:JW_PLAYER_SETTINGS}',
+    device: window.Purch && Purch.cs_data && Purch.cs_data.device || '${DEVICE}',
+    checkRequire: '1'
+  });
+
+});
+} catch (e) {
+console.error(e);
+}
+try {
+tmntag_ready(function() {
+
+setTimeout(function(){
+  if (document.location.href.indexOf('test-ad-label') >= 0){
+  var el = document.querySelector('.jw-loaded');
+  if (el) {
+    console.log(el);
+    var divid = el.id;
+    if (divid === '') {
+      el.id = divid = 'hasNoIdForLabel';
+    }
+    tmntag_adlabel.adLabelTopCenter(divid);
+  }}
+}, 2000);
+
+});
+} catch (e) {
+console.error(e);
+}
+try {
+tmntag_ready(function() {
+
+(function() {
+  var widgetsPlaceholders = Array.prototype.slice.apply(document.querySelectorAll('.M101'));
+
+  var shopId = '947';
+  if (shopId.indexOf('$') === 0) {
+    console.error('M101 configuration error: missing M101_PUBLISHER_ID macromap value');
+    return;
+  }
+  
+  var defaultTemplateId = '2912';
+  if (defaultTemplateId.indexOf('$') === 0) {
+    defaultTemplateId = null;
+  }
+  
+  var defaultMerchantIds = '8903,7170,7022,849,91,8763,805,1053,726,8902,8875,9124,8944,9096,9101,7144,4521,4406,5856,8770,9022,5826';
+  if (defaultMerchantIds.indexOf('$') === 0) {
+    defaultMerchantIds = null;
+  }
+  
+  var defaultLang = 'en';
+  if (defaultLang.indexOf('$') === 0) {
+    defaultLang = 'fr';
+  }
+  
+  var defaultCurrency = 'USD';
+  if (defaultCurrency.indexOf('$') === 0) {
+    defaultCurrency = 'EUR';
+  }
+  
+  widgetsPlaceholders.forEach(function(placeholder) {
+    if (placeholder.classList.contains('done')) {
+      return;
+    }
+
+    var div = document.createElement('div');
+    div.id = 'search-' + (new Date()).getTime();
+    div.dataset.m101Type = 'search-widget';
+    var widgetConfig = {
+      shopId: shopId,
+      isoCurrencyCode: placeholder.dataset.cur || defaultCurrency,
+      isoLanguageCode: placeholder.dataset.lang || defaultLang,
+      categoryIds: placeholder.dataset.cids || '',
+      merchantIds: placeholder.dataset.mids || defaultMerchantIds,
+      geolocation: placeholder.dataset.geo || false,
+      templateId: placeholder.dataset.tid || defaultTemplateId,
+      price: placeholder.dataset.p || '',
+      priceMin: placeholder.dataset.pm || '',
+      priceMax: placeholder.dataset.pmax || '',
+      percentOffMin: placeholder.dataset.pomin || '',
+      percentOffMax: placeholder.dataset.pomax || '',
+      sortingField: placeholder.dataset.sf || 'PRICE',
+      sortingOrder: placeholder.dataset.so || 'asc',
+      nameKeywords: placeholder.dataset.kw || '',
+      delta: placeholder.dataset.d || '',
+      merchantFilter: placeholder.dataset.mf || true,
+      merchantNumber: placeholder.dataset.mn || 1,
+      sid: placeholder.dataset.sid || '',
+      shortendTitle: placeholder.dataset.title || ''
+    };
+    div.dataset.config = JSON.stringify(widgetConfig);
+
+    placeholder.appendChild(div);
+    placeholder.classList.add('done');
+  });
+
+  if (widgetsPlaceholders.length > 0 && null === document.getElementById('m101')) {
+    var script = document.createElement('script');
+    script.id = 'm101';
+    script.type = 'text/javascript';
+    script.innerText = '!function(){for(var a="//link.monetizer101.com",b=[{lib:"widget/custom-2.0.3/js/load.min.js",method:function(){return MONETIZER101.init(a)}},{lib:"widget/search-2.0.3/js/load.min.js",method:function(){return MONETIZER101SEARCH.init(a)}}],c=b.length;c--;){var d=b[c],e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=a+"/"+d.lib,e.onload=d.method;var f=document.getElementsByTagName("script")[0];f.parentNode.insertBefore(e,f)}}();';
+    document.body.append(script);
+  }
+}());
+
+});
+} catch (e) {
+console.error(e);
+}

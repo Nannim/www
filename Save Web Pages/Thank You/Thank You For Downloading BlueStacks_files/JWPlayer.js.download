@@ -1,0 +1,519 @@
+/*global ga, tmntag, requirejs */
+/*jshint loopfunc: true */
+(function() {
+  "use strict";
+  // jwplayer
+  var Jwplayer = function(o) {
+    o.init = o.init || true;
+    o.settings = o.settings && o.settings.indexOf('${') >= 0 ? '{}' : o.settings;
+    try {
+      o.settings = JSON.parse(o.settings);
+    } catch (e) {
+      o.settings = {};
+    }
+    this.playlistTarget = o.playlistTarget.indexOf('${') >= 0 ? '.null' : o.playlistTarget;
+    this.playlistTargetHandler = o.playlistTargetHandler.indexOf('${') >= 0 ? 'afterend' : o.playlistTargetHandler;
+    this.playerId = o.playerId.indexOf('${') >= 0 ? 'LGVHcJDb' : o.playerId;
+    this.playlistId = o.playlistId.indexOf('${') >= 0 ? 'VDpm3tMH' : o.playlistId;
+    this.rightRail = o.rightRail.indexOf('${') >= 0 ? '.page-content-rightcol' : o.rightRail;
+    this.container = o.container.indexOf('${') >= 0 ? '.null' : o.container;
+    this.rightRailEl = document.querySelector(this.rightRail);
+    this.containerEl = document.querySelector(this.container);
+    this.playerSrc = 'https://assets.purch.com/ramp/assets/jwplayer/jwplayer-7.11.1.js';
+    this.playlistSrc = 'https://content.jwplatform.com/feeds/' + this.playlistId + '.json';
+    this.scriptsLoaded = [];
+    this.gaInited = false;
+    this.gaAccount = o.gaAccount;
+    this.playerContainers = {};
+    this.autoplay = o.device.toLowerCase() !== 'mobile';
+    this.settings = {
+      advertising: {
+        client: 'googima'
+      },
+      ga: {
+        idstring: 'gtm21',
+        label: 'JWPlayer'
+      },
+      controls: true,
+      width: "100%",
+      stretching: "uniform",
+      aspectratio: "16:9",
+      primary: "html5",
+      mute: true,
+      autostart: false,
+      sharing: {
+        link: document.location.href,
+        sites: [
+          "facebook",
+          "twitter",
+          "email",
+          "reddit"
+        ]
+      },
+      key: 'SK2tPajKJ8b9YvuxZXQKusvEbj4wf8/I6TRg0JC9uuNtr1wN'
+    };
+
+    for (var s in o.settings) {
+      if (o.settings.hasOwnProperty(s)) {
+        this.settings[s] = o.settings[s];
+      }
+    }
+
+    var self = this;
+    // DES-640 - JWP - Video on Slideshows
+    [].slice.call(document.querySelectorAll('.carousel-loadable')).forEach(function(carousel) {
+      carousel.addEventListener('carousel-loadable-complete', self.init.bind(self));
+    }, this);
+
+    if (o.init === true) {
+      this.init();
+    }
+  };
+
+  Jwplayer.prototype = {
+    init: function() {
+      this.addStyles();
+      var players = this.getPlayers();
+      if (!players.length) {
+        if (window.Purch && window.Purch.JwShowPlaylist === true) {
+          return this.renderPlaylist();
+        }
+      }
+      this.updateTracklist(players);
+      this.addScript(this.playerSrc, this.initPlayers.bind(this, players));
+    },
+    getLeftAndWidth: function() {
+      var rightRail = this.rightRailEl && this.rightRailEl.getBoundingClientRect();
+      var container = this.containerEl && this.containerEl.getBoundingClientRect();
+      var hasRightRail = rightRail && rightRail.right;
+      // we have right rail and it's not hidden
+      var width = hasRightRail ? rightRail.width : 300;
+
+      // we have to return two positions
+      // to stick on the bottom left (listings)  and bottom right (contents)
+      var bottomRight = (hasRightRail ? rightRail.right : container.right) - width;
+      var bottomLeft = container.left;
+
+      return {
+        bottomRight: bottomRight,
+        bottomLeft: bottomLeft,
+        width: width
+      };
+    },
+    getMinimizedPositions: function(dimensions) {
+      return [
+        // by default, stick on the right
+        '.jw-player-minimize .jw-player-position {',
+          'left:' + dimensions.bottomRight + 'px;',
+        '}',
+        // listing pages
+        '.listing .jw-player-minimize .jw-player-position,',
+        '.listing-page .jw-player-minimize .jw-player-position {',
+          'left:' + dimensions.bottomLeft + 'px;',
+        '}'
+      ].join('')
+    },
+    addStyles: function() {
+      var dimensions = this.getLeftAndWidth();
+      var styles = [
+        '.jw-loaded { background-color: rgba(0,0,0,.1); margin: 5px 0; }',
+        '.jw-dock-image { background-size:45%; }',
+        '.jw-dock-button[button="close"] { display:none; }',
+        '@media screen and (min-width: 668px) {',
+          '@keyframes jw-minimize {',
+            '0%   { opacity: 0; }',
+            '100% { opacity: 1; }',
+          '}',
+          '.jw-player-minimize { animation: jw-minimize .6s; }',
+          '.jw-player-minimize .jw-dock-button[button="close"] { display:inherit; }',
+          '.jw-player-minimize .jw-flag-small-player .jw-dock-button { width:30px;height:30px; }',
+          '.jw-player-minimize .jw-player-position {',
+            'transition: top .2s, transform .2s;',
+            'box-shadow: 0 0 6px 2px rgba(0,0,0,.4);',
+            'position: fixed; z-index:9999; width:'+dimensions.width+'px; bottom: 0;',
+          '}',
+          this.getMinimizedPositions(dimensions),
+        '}'
+      ].join('');
+      var s = document.createElement('style');
+      s.id = 'jw-main-styles';
+      this.resizeStyles = document.createElement('style');
+      this.resizeStyles.id = 'jw-resize-styles';
+      this.stickyStyles = document.createElement('style');
+      this.stickyStyles.id = 'jw-sticky-styles';
+      s.innerHTML = styles;
+      document.head.appendChild(s);
+      document.head.appendChild(this.resizeStyles);
+      document.head.appendChild(this.stickyStyles);
+    },
+    addScript: function(src, cb) {
+      cb = cb || function() {};
+      var self = this;
+      if (this.scriptsLoaded.indexOf(src) >= 0) {
+        return cb();
+      }
+
+      if (window.require && window.requirejs){
+        requirejs.config({"paths":{"jwPlatformLib":src.replace('.js','')}});
+        require(["jwPlatformLib"],function(jwPlatformLib){
+          self.scriptsLoaded.push(src);
+          cb();
+        });
+        return;
+      } else {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function() {
+          self.scriptsLoaded.push(src);
+          cb();
+        };
+        document.head.appendChild(s);
+      }
+    },
+    getSettings: function() {
+      // get a copy of the settings so it's always clean
+      return JSON.parse(JSON.stringify(this.settings));
+    },
+    renderPlaylist: function() {
+      var target;
+      try {
+        target = document.querySelector(this.playlistTarget);
+      } catch (e) { console.log(e); }
+      if (!target) {
+        return;
+      }
+      var divId = 'jw-' + (new Date()).getTime();
+      var settings = this.getSettings();
+
+      settings.playlist = this.playlistSrc;
+      settings.isPlaylist = true;
+      target.insertAdjacentHTML(this.playlistTargetHandler, '<div jw-playlist-auto class="jw-loaded">' + this.getTemplate(divId) + '</div>');
+      return this.addScript(
+          this.playerSrc,
+          this.renderPlayer.bind(this, divId, settings, document.querySelector('[jw-playlist-auto]'))
+      );
+    },
+    getTemplate: function(divId) {
+      return [
+        '<div id="' + divId + '-position" class="jw-player-position">',
+          '<div id="' + divId + '"></div>',
+        '</div>'
+      ].join('');
+    },
+    refresh: function(context) {
+      var players = this.getPlayers(context);
+      if (!players.length) {
+        return;
+      }
+      this.updateTracklist(players);
+      this.addScript(this.playerSrc, this.initPlayers.bind(this, players));
+    },
+    getPlayers: function(context) {
+      return [].slice.call((context || document.body).querySelectorAll('[data-jwplayer-id]:not(.jw-loaded)'));
+    },
+    updateTracklist: function(players) {
+      this.settings.playlist = this.settings.playlist || [];
+      for (var i = 0; i < players.length; i++) {
+        var mediaId = players[i].getAttribute('data-jwplayer-id');
+        var jwpHost = 'https://content.jwplatform.com';
+        this.settings.playlist.push({
+          mediaid: mediaId,
+          image: jwpHost + '/thumbs/' + mediaId + '.jpg',
+          file: jwpHost + '/videos/' + mediaId + '.mp4',
+          sources: [{
+            file: jwpHost + '/manifests/' + mediaId + '.m3u8',
+            type: 'hls',
+            label: 'hls'
+          },{
+            file: 'https://content.jwplatform.com/videos/'+mediaId+'.mp4'
+          }]
+        });
+      }
+    },
+    initPlayers: function(players) {
+      for (var j = 0; j < players.length; j++) {
+        var divId = 'jw-' + (new Date()).getTime();
+        var mediaId = players[j].getAttribute('data-jwplayer-id');
+        players[j].innerHTML = this.getTemplate(divId);
+        players[j].className = players[j].className + ' jw-loaded';
+        var settings = this.getSettings();
+        if (j > 0) {
+          settings.autostart = false;
+        }
+
+        if (mediaId.indexOf('-') >= 0) {
+          settings.playlist = 'https://content.jwplatform.com/feeds/' + mediaId.split('-')[1] + '.json';
+          settings.isPlaylist = true;
+        } else {
+          // reorder the tracklist, put current media first
+          settings.playlist = settings.playlist.reduce(function(acc, current) {
+            if (current.file && current.mediaid === mediaId) {
+              acc.splice(0, 0, current);
+            } else if (current.file && current.mediaid !== mediaId) {
+              acc.push(current);
+            }
+            return acc;
+          }, []);
+        }
+
+        this.renderPlayer(divId, settings, players[j]);
+      }
+    },
+    initTracking: function(instance, settings) {
+      if (!window.ga) {
+        return;
+      }
+      if (!this.gaInited) {
+        ga('create', this.gaAccount, 'auto', {'name': this.settings.ga.idstring});
+        this.gaInited = true;
+      }
+      var eventTarget = this.settings.ga.idstring + '.send';
+      var eventLabel = settings.isPlaylist ? 'JW Player Playlist' : 'JW Player Video';
+      instance.on('play', function() {
+        ga(eventTarget, 'event', eventLabel, 'Play', instance.getPlaylistItem().mediaid);
+      });
+      instance.on('pause', function() {
+        ga(eventTarget, 'event', eventLabel, 'Pause', instance.getPlaylistItem().mediaid);
+      });
+      instance.on('resume', function() {
+        ga(eventTarget, 'event', eventLabel, 'Resume', instance.getPlaylistItem().mediaid);
+      });
+      instance.on('buffer', function() {
+        ga(eventTarget, 'event', eventLabel, 'Buffer', instance.getPlaylistItem().mediaid);
+      });
+      instance.on('complete', function() {
+        ga(eventTarget, 'event', eventLabel, 'Complete', instance.getPlaylistItem().mediaid);
+      });
+    },
+    initSticky: function() {
+      // sticky was already init
+      if (typeof this.isScrollTimeout !== 'undefined') {
+        return;
+      }
+      var self = this;
+      this.isScrollTimeout = null;
+      this.isResizeTimeout = null;
+      this.lastSticky = null;
+      document.addEventListener('scroll', function() {
+        self.isScrollTimeout = self.scrollHandler();
+      });
+      window.addEventListener('resize', function() {
+        self.isResizeTimeout = self.resizeHandler();
+      });
+    },
+    scrollHandler: function() {
+      clearTimeout(this.isScrollTimeout);
+      return setTimeout(this.onScrollViewHandler.bind(this), 40);
+    },
+    resizeHandler: function() {
+      clearTimeout(this.isResizeTimeout);
+      return setTimeout(this.onResizeViewHandler.bind(this), 40);
+    },
+    onResizeViewHandler: function() {
+      var dimensions = this.getLeftAndWidth();
+
+      this.resizeStyles.innerHTML = [
+        '@media screen and (min-width: 668px) {',
+          '.jw-player-minimize .jw-player-position {',
+            'width:' + dimensions.width + 'px;',
+          '}',
+          this.getMinimizedPositions(dimensions),
+        '}'
+      ].join('');
+
+      // resize each players containers
+      for (var divId in this.playerContainers) {
+        if (this.playerContainers.hasOwnProperty(divId)) {
+          var dim = this.playerContainers[divId].el.getBoundingClientRect();
+          var playerWidth = dim.width;
+          var playerHeight = (playerWidth * 9)/16;
+          this.playerContainers[divId].el.style.height = playerHeight + 'px';
+        }
+      }
+    },
+    onScrollViewHandler: function() {
+      var scrollTop = this.getScrollTop();
+
+      for (var divId in this.playerContainers) {
+        if (this.playerContainers.hasOwnProperty(divId)) {
+          var instance = this.playerContainers[divId].instance;
+          var playerContainerEl = this.playerContainers[divId].el;
+          var elementHeight = this.getElementHeight(playerContainerEl);
+
+          var elementOffsetTop = this.getElementOffsetTop(playerContainerEl);
+          var offset = elementHeight/(2.5);
+          var elementY = elementOffsetTop - this.getWindowHeight();
+
+          var isInView = elementY + offset < scrollTop &&
+              elementOffsetTop + elementHeight - offset > scrollTop;
+
+          if (isInView) {
+
+            if (!this.interactiveId) {
+              this.interactiveId = divId;
+            }
+
+            if (this.interactiveId === divId) {
+              this.playerContainers[divId].dockable = true;
+              if (['complete', 'paused'].indexOf(instance.getState()) === -1 && this.autoplay) {
+                if (window.Purch && window.Purch.JwDisableAutoPlay !== true) {
+                  if (window.tmntag && window.tmntag.video && window.tmntag.video.autostarted) {
+                    window.tmntag.video.autostarted(divId, true);
+                  }
+                  instance.play(true);
+                }
+              }
+            } else {
+              this.playerContainers[divId].dockable = false;
+            }
+          }
+
+          if (this.playerContainers[divId].dockable) {
+            if (this.playerContainers[divId].dockable !== isInView) {
+              this.dock(this.playerContainers[divId]);
+            } else {
+              this.undock(this.playerContainers[divId]);
+            }
+          }
+        }
+      }
+    },
+    shouldNotDock: function() {
+      return this.hasDockCookie() || (window.Purch && window.Purch.JwDisableSticky === true);
+    },
+    dock: function(container) {
+      if (this.shouldNotDock()) {
+        return;
+      }
+      container.utils.toggleClass(container.el, 'jw-player-minimize', true);
+      this.resize(container.instance, container.elPosition);
+      this.lastSticky = container;
+    },
+    undock: function(container, pause) {
+      if (pause) {
+        container.instance.pause(true);
+      }
+      container.utils.toggleClass(container.el, 'jw-player-minimize', false);
+      this.resize(container.instance, container.elPosition);
+    },
+    resize: function(instance, elPosition) {
+      // get .jw-player-position sizes
+      var dimensions = elPosition.getBoundingClientRect();
+      var playerWidth = dimensions.width;
+      var playerHeight = (playerWidth * 9)/16;
+      instance.resize(playerWidth, playerHeight);
+    },
+    getElementOffsetTop: function(el) {
+      var boundingClientRect = el.getBoundingClientRect();
+      var bodyEl = document.body;
+      var docEl = document.documentElement;
+      var scrollTop = window.pageYOffset || docEl.scrollTop || bodyEl.scrollTop;
+      var clientTop = docEl.clientTop || bodyEl.clientTop || 0;
+      return Math.round(boundingClientRect.top + scrollTop - clientTop);
+    },
+    getWindowHeight: function () {
+      return window.innerHeight || document.documentElement.clientHeight;
+    },
+    getElementHeight: function(el) {
+      var boundingClientRect = el.getBoundingClientRect();
+      return boundingClientRect.height;
+    },
+    getScrollTop: function() {
+      var docEl = document.documentElement;
+      return (window.pageYOffset || docEl.scrollTop) - (docEl.clientTop || 0);
+    },
+    setDockCookie: function() {
+      // Save data to sessionStorage
+      sessionStorage.setItem('jwDisableDocking', '1');
+    },
+    hasDockCookie: function() {
+      return sessionStorage.getItem('jwDisableDocking') === '1';
+    },
+    onUserInteraction: function(instance) {
+      for (var id in this.playerContainers) {
+        if (this.playerContainers.hasOwnProperty(id)) {
+          if (instance.getContainer().id !== id) {
+            this.playerContainers[id].dockable = false;
+            this.undock(this.playerContainers[id], true);
+          }
+        }
+      }
+      this.interactiveId = instance.getContainer().id;
+    },
+    renderPlayer: function(divId, settings, playerContainerEl) {
+      var self = this;
+      var playerInstance = window.jwplayer(divId);
+      if (!playerInstance) {
+        return;
+      }
+      playerInstance.setup(settings);
+
+      if (window.tmntag && tmntag.cmd) {
+        tmntag.cmd.push(function(){
+          try {
+            tmntag.video.start(divId, settings, playerInstance, 'video_content', true);
+          } catch (e) {}
+        });
+      }
+
+
+      playerInstance.addButton(
+        'https://icons.jwplayer.com/icons/white/close.svg',
+        'Close Video',
+        function () {
+          if (!self.lastSticky) {
+            return;
+          }
+          self.setDockCookie();
+          self.undock(self.lastSticky, true);
+        },
+        'close'
+      );
+
+
+      playerInstance.on('play', function(state) {
+        if (state.playReason === 'interaction') {
+          self.onUserInteraction(this);
+          this.setMute(false);
+        }
+      });
+
+      playerInstance.on('adPlay', function () {
+        self.onUserInteraction(this);
+      });
+
+      playerInstance.on('fullscreen', function(state) {
+        self.onUserInteraction(this);
+        if (state.fullscreen === true) {
+          this.setMute(false);
+        }
+      });
+
+      playerInstance.on('volume', function() {
+        self.onUserInteraction(this);
+      });
+
+      playerInstance.on('ready', function() {
+        var config = this.getConfig();
+        var playerHeight = config.containerHeight;
+        var id = this.getContainer().id; // dynamic id (ex: jw-6456464)
+
+          playerContainerEl.style.height = playerHeight + 'px';
+
+        self.playerContainers[id] = {
+          el: playerContainerEl, // [data-jwplayer-id]
+          elPosition: document.getElementById(id + '-position'),
+          instance: this,
+          utils: this.utils
+        };
+
+        self.onScrollViewHandler();
+      });
+      this.initTracking(playerInstance, settings);
+      this.initSticky();
+    }
+  };
+
+  window.Purch = window.Purch || {};
+  window.Purch.Jwplayer = Jwplayer;
+})();

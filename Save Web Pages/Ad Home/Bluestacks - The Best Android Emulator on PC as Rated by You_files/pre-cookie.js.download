@@ -1,0 +1,72 @@
+// if (document.cookie.indexOf("preferred_lang") == -1 ) {
+//     var pl = "preferred_lang=en;";
+//     document.cookie = pl + path + expires;
+// }
+
+$(document).on("click", '.save-app-cookie', function(event){
+    event.preventDefault();
+    var app  = $(this),
+        goTo = this.getAttribute("href");
+        json = JSON.stringify(app.data('app') ),
+        lang = app.data('lang'),
+        app  = "app_info=" + json + ";",
+        pl   = "preferred_lang=" + lang + ";",
+        // now = new Date(),
+        // now.setTime(now.getTime() + 10000)
+        // exShort = "expires="+now.toUTCString();
+
+        // document.cookie = app + path + exShort;
+        document.cookie = app + path;
+        document.cookie = pl + path + expires;
+
+        setTimeout(function(){
+            window.location = goTo;
+        },100);
+
+
+});
+
+
+$(function() {
+
+    var existCookie = readCookie('announcement')
+
+    function readCookie(name) {
+        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
+        return !!pair ? pair[1] : null
+    }
+
+
+    if(existCookie === null){
+
+        var closeNotification = document.querySelector('#close-notification') || false
+
+        if(!closeNotification) return
+
+        var announcement = document.querySelector('.notification-top')
+        var announcementDimensions = announcement.getBoundingClientRect()
+        var body = document.body
+
+        body.style.transform = "translate3d(0,"+announcementDimensions.height+"px, 0)"
+        closeNotification.addEventListener('click', toggleAnnouncement)
+
+        function toggleAnnouncement(){
+            closeHTML()
+            createAnnouncementCookie()
+        }
+
+        function closeHTML(){
+            body.style.transform = "translate3d(0,0,0)"
+        }
+
+        function createAnnouncementCookie(){
+            document.cookie = 'announcement=closed'
+        }
+
+    }
+
+    var delete_cookie = function(name) {
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    }
+
+});

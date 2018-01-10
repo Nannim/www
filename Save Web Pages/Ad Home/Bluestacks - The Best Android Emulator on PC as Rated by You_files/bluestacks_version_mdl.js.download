@@ -1,0 +1,61 @@
+// switch(window.location.hostname) {
+//     case 'localhost':
+//         baseLink = 'https://localhost/trabalho/wordpress-bs/wp-content/themes/bluestacks';
+//     break;
+//     case 'staging.postfix.in':
+//         baseLink = 'https://staging.postfix.in/wp-content/themes/bluestacks';
+//     break;
+//     default:
+//         baseLink = '';
+// }
+
+var $body = $('body'),
+    $mdlChangeLog = $('.change-log'),
+    $stop = false;
+
+$(document).on('click', '.version-info', function(event){
+
+    if(change_log == "" || change_log == '""') {
+        return;
+    } else {
+
+        $body.addClass('version_mdl');
+
+        $("<div/>", {
+            id: 'overlay'
+        })
+        .appendTo("body");
+
+        $("<button/>", {
+            id: 'close-mdl'
+        })
+        .appendTo($mdlChangeLog)
+        .append('<i></i><i></i>');
+
+        $.fn.locSCroll();
+        event.preventDefault();
+    }
+});
+
+$(document).on('click', '#close-mdl', function(event){
+    $mdlChangeLog.css('display', 'none');
+    $('#overlay, #close-mdl').remove();
+    $body.removeClass('version_mdl');
+    $stop = false;
+});
+
+$.fn.locSCroll = function() {
+    $stop = true;
+    $body.on({
+        'mousewheel': function(e) {
+            if($stop){
+            e.preventDefault();
+            e.stopPropagation();
+            }
+        }
+    });
+}
+
+// $(document).ready(function () {
+//     $('head').append('<link rel="stylesheet" href="' + baseLink + '/css/version_mdl.min.css">');
+// });

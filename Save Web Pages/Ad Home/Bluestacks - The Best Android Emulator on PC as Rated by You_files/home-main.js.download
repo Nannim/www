@@ -1,0 +1,182 @@
+'use strict';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+'use strict';
+var all=document.querySelectorAll.bind(document),the=document.querySelector.bind(document),Taber=function(){function a(){_classCallCheck(this,a),this.taber=the('.tops-tab'),this.lazzys=[],this.active=!1,this.triggers=this.taber.querySelectorAll('button[data-tab]'),this.tabs=this.taber.querySelectorAll('.content[data-tab]'),this._binder()}return _createClass(a,[{key:'_binder',value:function _binder(){var b=this;this.triggers.forEach(function(c){c.addEventListener('click',function(d){return b.toogle(d)})}),this.active||(this.taber.style.opacity=1),this.tabs.forEach(function(c){c.classList.contains('current')&&b.lazzy(c)})}},{key:'toogle',value:function toogle(b){var c=this;this.currentTab=b.target.dataset.tab,this.triggers.forEach(function(d){return d.classList.remove('active')}),b.target.classList.add('active'),this.tabs.forEach(function(d){d.classList.contains('current')&&d.classList.remove('current'),d.dataset.tab==c.currentTab&&(d.classList.add('current'),c.lazzy(d))})}},{key:'lazzy',value:function lazzy(b){var c=this.lazzys.find(function(f){return f.tab==b});if(!c){var d=b.querySelectorAll('img');d.forEach(function(f){return f.src=f.dataset.src}),this.lazzys.push({tab:b})}}}]),a}();
+
+var isMobile = {
+  Android: function Android() {
+    return navigator.userAgent.match(/Android/i);
+  },
+  BlackBerry: function BlackBerry() {
+    return navigator.userAgent.match(/BlackBerry/i);
+  },
+  iOS: function iOS() {
+    return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+  },
+  Opera: function Opera() {
+    return navigator.userAgent.match(/Opera Mini/i);
+  },
+  Windows: function Windows() {
+    return navigator.userAgent.match(/IEMobile/i);
+  },
+  any: function any() {
+    return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+  }
+};
+
+$(document).ready(function () {
+
+  /**
+   * SLIDER ON TOP
+   */
+  var slider = $('#slider');
+  var imgBlur = Array.from(document.querySelectorAll('.img-blur'));
+
+  // var percent = 18;
+  //
+  // if (isMobile.any()) percent = 5;
+  //
+  // var sliderPadding = percent / 100 * slider[0].offsetWidth || false;
+  //
+  // window.onresize = function () {
+  //   if (isMobile.any()) percent = 5;
+  //   sliderPadding = percent / 100 * slider[0].offsetWidth;
+  // }
+
+  var sliderPadding = 160
+
+  if(isMobile.any()){
+    sliderPadding = 5 / 100 * slider[0].offsetWidth;
+  }
+
+  slider.owlCarousel({
+    items: 1,
+    autoplay: true,
+    smartSpeed: 200,
+    stagePadding: sliderPadding,
+    loop: true,
+    nav: true
+  });
+
+  slider.on('changed.owl.carousel', function (event) {
+
+    var current = event.item.index - 2;
+
+    if (current == -1) current = imgBlur.length;
+
+    if (current >= imgBlur.length) current = 0;
+
+    imgBlur.map(function (e) {
+      return e.classList.remove('initial');
+    });
+
+    imgBlur[current].classList.add('initial');
+  }
+
+  /**
+   * Carousel of activities
+   */
+  );
+
+  // aside tabs
+  new Taber()
+
+  var activitiesSlider = $('#activities');
+
+  activitiesSlider.removeClass('carousel');
+
+  if (!isMobile.any()) {
+
+    activitiesSlider.owlCarousel({
+      items: 3,
+      smartSpeed: 800,
+      addClassActive: true,
+      dotsEach: false,
+      nav: true
+    });
+  } else {
+
+    activitiesSlider.owlCarousel({
+      items: 1,
+      smartSpeed: 800,
+      stagePadding: 50,
+      loop: true,
+      addClassActive: true,
+      dotsEach: false,
+      nav: true
+    });
+  }
+
+  activitiesSlider.on('changed.owl.carousel', function (event) {
+
+    activitiesSlider.addClass('passed');
+
+    if (event.item.index == event.item.count - 1) activitiesSlider.addClass('last');
+
+    if (event.item.index < event.item.count - 1) activitiesSlider.removeClass('last');
+
+    if (event.item.index == 0) activitiesSlider.removeClass('passed');
+  });
+
+  /**
+   * Carousel of New Games
+   */
+  var newGamesCarousel = $('#new-games-carousel');
+
+  sliderPadding = 25 / 100 * slider[0].offsetWidth;
+
+  if (!isMobile.any()) {
+
+    newGamesCarousel.owlCarousel({
+      items: 1,
+      smartSpeed: 800,
+      addClassActive: true,
+      dotsEach: false,
+      nav: true
+    });
+
+  } else {
+
+    newGamesCarousel.owlCarousel({
+      items: 1,
+      smartSpeed: 800,
+      stagePadding: sliderPadding,
+      loop: true,
+      addClassActive: true,
+      dotsEach: false,
+      nav: true
+    });
+  }
+
+  var currentSlide = newGamesCarousel[0].querySelector('.active')
+
+  var images = currentSlide.querySelectorAll('img')
+
+  images.forEach(function(img){
+      img.src = img.dataset.src
+  })
+
+  newGamesCarousel.on('changed.owl.carousel', function (event) {
+
+    newGamesCarousel.addClass('passed');
+
+    var currentSlide = event.currentTarget.children[0].children[0].children[event.item.index]
+    var images = currentSlide.querySelectorAll('img')
+
+    images.forEach(function(img){
+        img.src = img.dataset.src
+    })
+
+
+    if (event.item.index == event.item.count - 1) newGamesCarousel.addClass('last');
+
+    if (event.item.index < event.item.count - 1) newGamesCarousel.removeClass('last');
+
+    if (event.item.index == 0) newGamesCarousel.removeClass('passed');
+  });
+
+});

@@ -1,0 +1,205 @@
+function isPaidCampaign(utm_campaign)
+{
+    //console.log('checking if ' + utm_campaign + ' is a paid campaign')
+    return utm_campaign.startsWith('aw-')
+    || utm_campaign.startsWith('yb-')
+    || utm_campaign.startsWith('cc-')
+    || utm_campaign.startsWith('cs-')
+    || utm_campaign.startsWith('da-')
+    || utm_campaign.startsWith('fb-')
+    || utm_campaign.startsWith('na-')
+    || utm_campaign.startsWith('pr-')
+    || utm_campaign.startsWith('ya-')
+    || utm_campaign.startsWith('afr-')
+    || utm_campaign.startsWith('afr2b-')
+    || utm_campaign.startsWith('yx-')
+    || utm_campaign.startsWith('na-')
+    || utm_campaign.startsWith('naver-')
+    || utm_campaign.startsWith('rf-')
+    || utm_campaign.startsWith('af-')
+    || utm_campaign.startsWith('appc-')
+    || utm_campaign.startsWith('blog-')    
+    || (utm_campaign.indexOf("cpc")!=-1)
+}
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+//changing cookie expiry time to 24 hours
+var d = new Date();
+d.setTime(d.getTime() + (24*60*60*1000));
+var expires = "expires="+d.toUTCString();
+var path = "path=/;";
+var url = window.location.href
+var referrer = document.referrer;
+var index = referrer.indexOf("bluestacks.com");
+
+if((getCookie("utm_source")==="") && getQueryVariable("utm_source")){
+    var utm_source = "utm_source=" + getQueryVariable("utm_source") + ";";
+    document.cookie = utm_source + path + expires;
+}
+
+if((getCookie("gclid")==="") && getQueryVariable("gclid")){
+    var gclid= "gclid=" + getQueryVariable("gclid") + ";";
+    document.cookie = gclid + path + expires;
+}
+
+var affiliate_source = getQueryVariable("affiliate_source");
+if(affiliate_source)
+    var affiliate_ids = affiliate_source.substring(affiliate_source.toLowerCase().indexOf('_aid'),affiliate_source.length);
+
+if ((getCookie("affiliateId") === "") && affiliate_source) {
+    if (affiliate_ids.toLowerCase().indexOf('_aid') != -1) {
+        var affiliateId = "affiliateId=" + affiliate_ids.substring(affiliate_ids.indexOf('_aid') + 4, affiliate_ids.indexOf("_oid")) + ";";
+    }
+    document.cookie = affiliateId + path + expires;
+}
+
+if ((getCookie("offerId") === "") && affiliate_source) {
+    if (affiliate_ids.toLowerCase().indexOf('_oid') != -1) {
+        var offerId = "offerId=" + affiliate_ids.substring(affiliate_ids.indexOf('_oid') + 4, affiliate_ids.length) + ";";
+    }
+    document.cookie = offerId + path + expires;
+}
+
+if((getCookie("utm_medium")==="") && getQueryVariable("utm_medium")){
+    var utm_medium = "utm_medium=" + getQueryVariable("utm_medium") + ";";
+    document.cookie = utm_medium + path + expires;
+}
+
+// overwrite utm_campaign cookie value
+if(getQueryVariable("utm_campaign")){
+    //overwriting cpc cookie
+    if(getQueryVariable("utm_campaign").indexOf("cpc")!= -1 && getCookie("utm_campaign").indexOf("ap")!=-1){
+        utm_campaign = "utm_campaign=" + getQueryVariable("utm_campaign") + ";";
+        document.cookie = utm_campaign + path + expires;
+    } else if(isPaidCampaign(getCookie("utm_campaign")) && !isPaidCampaign(getQueryVariable("utm_campaign"))){
+        // moving from paid campaign -> not paid, don't update the campaign
+    }
+    else{
+        utm_campaign = "utm_campaign=" + getQueryVariable("utm_campaign") + ";";
+        document.cookie = utm_campaign + path + expires;
+    }
+}
+
+if(getQueryVariable("transaction_id")){
+    var transaction_id = "transaction_id=" + getQueryVariable("transaction_id") + ";";
+    document.cookie = transaction_id + path + expires;
+}
+if(getQueryVariable("aff_sub")){
+    var aff_sub = "aff_sub=" + getQueryVariable("aff_sub") + ";";
+    document.cookie = aff_sub + path + expires;
+}
+
+if((getCookie("first_landing_page")==="")){
+    var first_landing_page = "first_landing_page=" + url + ";";
+    document.cookie = first_landing_page + path + expires;
+}
+
+if((getCookie("referrer")==="") && referrer!='' && index ==-1){
+    var referrer = "referrer=" + document.referrer + ";";
+    document.cookie = referrer + path + expires;
+}
+
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+    else return "";
+}
+
+function reportCampaignPageView() {
+    try {
+        var utm_campaign = getCookie("utm_campaign")
+        var ga_cookie = getCookie("_ga");
+        var utm_source = getCookie("utm_source")
+        var utm_medium = getCookie("utm_medium")
+        var utm_referrer = getCookie("referrer")
+        if (utm_campaign != null && utm_campaign != '' && ga_cookie != null && ga_cookie != '') {
+	          $.ajax({
+		            type: "POST",
+		            url: "https://bluestacks-cloud.appspot.com/api/reportcampaignpageview",
+		            data: {
+			              utm_campaign: utm_campaign,
+			              gaCookie: ga_cookie,
+			              utm_source : utm_source,
+			              utm_medium : utm_medium,
+			              utm_referrer : utm_referrer
+		            }
+	          });
+        }
+    } catch(e) {
+        console.log(e)
+    }
+}
+
+reportCampaignPageView()
+
+// function deleteCookieDownload(name) {
+//     if (window.localStorage.getItem('download') && window.localStorage.getItem('download') == "true") {
+//         window.localStorage.removeItem('download');
+//     } else {
+//         window.location = 'https://bluestacks.com';
+//     }
+// }
+
+// setTimeout(function() {
+
+//     let linktoDownloadArr = [],
+//         linkstoDownload = document.querySelectorAll('a'),
+//         linksCount = linkstoDownload.length,
+//         location = window.location.host,
+//         host = (location === 'localhost') ? 'https://localhost/trabalho/bluestacks-production/downloader' :
+//         (location === 'www.bluestacks.com') ? 'https://www.bluestacks.com/download.html' :
+//         (location === 'test.bluestacks-www.appspot.com') ? 'https://test.bluestacks-www.appspot.com/download.html' :
+//         'false'
+
+//     for (let i = 0; i < linksCount; i++) {
+//         linktoDownloadArr[i] = linktoDownloadArr[i] || {
+//             el: linkstoDownload[i]
+//         }
+//         linktoDownloadArr[i].link = linkstoDownload[i].href
+//     }
+
+//     function checkIfUrlIsDownload(l) {
+//         if (l.link.indexOf("bluestacks.com/download.html") !== -1) {
+//             l.el.href = host
+//             l.el.classList.add('link-to-download')
+//         }
+//     }
+
+//     function getFilteredUrl() {
+//         linktoDownloadArr.filter(checkIfUrlIsDownload)
+//     }
+
+//     getFilteredUrl()
+
+//     let downloaders = document.querySelectorAll('.link-to-download')
+
+//     for (let downloader of downloaders) {
+
+//         downloader.onclick = function() {
+//             e.preventDefault()
+
+//             window.localStorage.setItem('download', true)
+
+//             if (window.localStorage.getItem('download') == "true") {
+//                 window.location = $(this).attr('href')
+//             } else {
+//                 console.log('cookie not created')
+//             }
+
+//             return falses
+//         }
+
+//     }
+
+// }, 100);
