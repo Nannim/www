@@ -1,0 +1,24 @@
+(function () {
+  // detect old browser
+  var canSvg = !!(
+          document.createElementNS &&
+          document
+              .createElementNS('http://www.w3.org/2000/svg', 'svg')
+              .createSVGRect)
+  var canHistory =
+          typeof window.history === 'object' &&
+          typeof window.history.pushState === 'function'
+  var isIphone4 = navigator.userAgent.match(/iPhone/i) !== null && window.screen.height === (960 / 2)
+  var styles = document.documentElement.style
+  var canFlexbox =
+    'flex' in styles ||
+    'webkitFlex' in styles ||
+    '-moz-box-flex' in styles ||
+    '-webkit-flex' in styles ||
+    'msFlex' in styles
+  var isOutdated = !canSvg || !canHistory || !canFlexbox || isIphone4
+
+  if (isOutdated) {
+    document.location.href = './outdated.html'
+  }
+})()
