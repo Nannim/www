@@ -43,7 +43,6 @@ include 'header.php';
 </p>
 <p>
 Therefore my first duty to humanity and as president would be to introduce kinetic
-
 energy to electrical energy convertion pads manufactured in nigeria to our streets to power the dtreet lights and even our homes
 generated (including the pads) by we nigerians and surplus to sell.
 This innovation tackles two problems at once, rods and energy, we then employ our indigenous automobile
@@ -70,7 +69,7 @@ The Needs of the Nigerian
 2. Security
 3. Electricity
 4. Water
-5. Roads,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+5. Roads
   <h3>Major Agenda Points</h3>
 <br>
 1. Enhance our Agriculture so food is in good supply and exportable.
