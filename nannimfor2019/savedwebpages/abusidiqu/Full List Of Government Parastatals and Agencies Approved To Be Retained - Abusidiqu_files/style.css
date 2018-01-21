@@ -1,0 +1,13 @@
+/*
+Theme Name: Abusidiqu
+Theme URI: https://codaye.com
+Description: Child theme for abusidiqu.com
+Author: Codaye
+Author URI: https://codaye.com
+Template: hush
+Version: 1.0.5
+*/
+
+.single-post .entry-title {
+	font-size: 40px;
+}

@@ -1,0 +1,9 @@
+*{text-align:center;}
+@import url('https://fonts.googleapis.com/css?family=Lato');
+html{width:100%;}
+div{padding:10px 10px 10px 10px;border-radius:0px;}
+h1, h2, h3, table{font-family:Calibri;}
+div{display:block;display:inline-block;}
+.absolutes{position:static;}
+a{text-decoration:none;color:green;}
+hr{width:80%;opacity:0.1;}

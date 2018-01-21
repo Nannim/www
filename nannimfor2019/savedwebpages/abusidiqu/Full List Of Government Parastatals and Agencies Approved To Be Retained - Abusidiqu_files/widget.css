@@ -1,0 +1,111 @@
+.apo-widget-item{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.apo-widget-item:before,
+.apo-widget-item:after, 
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: " ";
+}
+.apo-widget-item:after {
+  clear: both;
+}
+.apo-widget-logo{
+	padding-top: 20px;
+	margin-right: 10px;
+}
+.pull-left{
+	float: left !important;
+}
+.pull-right{
+	float: right !important;
+}
+.apo-widget-item h3{
+	font-size: 22px;
+	margin-top: 20px;
+  margin-bottom: 10px;
+}
+.apo-widget-item h3 a{
+	color: #428bca;
+	text-decoration: none;
+}
+.apo-widget-desc, .apo-widget-metadata{
+  color:  #333;
+}
+.apo-widget-metadata .metadata-inline{
+	display: inline-block;
+  margin-right: 10px;
+  font-size: 12px;
+}
+.apo-widget-body{
+  clear: both;
+}
+.apo-widget-body:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.dateline-text{
+  float: left;
+}
+.dateline-text.ar{
+  float: right;
+}
+.apo-widget-body p:first-child{
+  display: inline;
+}
+
+.apo-widget-pagination .pagination {
+  padding-bottom: 20px;
+  margin: 18px 0;
+}
+
+.apo-widget-pagination .pagination ul {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+.apo-widget-pagination .pagination ul li {
+  display: inline;
+}
+
+.apo-widget-pagination .pagination ul li a,
+.apo-widget-pagination .pagination ul li span {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+}
+
+.apo-widget-pagination .pagination ul li a:hover,
+.apo-widget-pagination .pagination ul li.active span {
+  color: #4C6169;
+  background-color: #c7eefe;
+}
+
+.apo-widget-pagination .pagination ul li.disabled a,
+.apo-widget-pagination .pagination ul li.disabled a:hover {
+  color: #bfbfbf;
+  background-color: none;
+}
+
+.apo-widget-pagination .pagination ul li.next a {
+  border: 0;
+}
+
+.q-links li {list-style:none; float: left; line-height: 1; font-size: 12px; margin-right: 20px; font-family: 'proxima_novasemibold';}
+.ico {float: left; width: 10px; height: 12px; margin-right: 5px;}
+.q-links li a:hover i, .table-download-link:hover i {background-position: 0 -10px;}
+.q-links li a:hover i.print, .q-links li a:hover i.download,.table-download-link:hover i.download {background-position: 0 -12px;}
+.q-links li a.remove-post {color: #b10935;}
+.q-links li a.remove-post:hover {color: #5d0018 !important;}
+.social-share a{ text-decoration: none; color: #428bca; }
+.social-share ul.icns{background: #f7f7f7;padding: 5px;position: absolute;top: -48px !important;left: 50%;margin-left: -55px;width:128px;display: none;border-radius: 5px;box-shadow: 0 0 7px 0 #666666;}
+.social-share ul.icns:after {content: "";position: absolute;background: #f7f7f7;left: 50%;top: 46px;width: 10px;height: 10px;margin-left: -5px;-webkit-box-shadow: 6px 5px 9px -9px black,5px 6px 9px -9px black;-moz-box-shadow: 6px 5px 9px -9px black,5px 6px 9px -9px black;box-shadow: 6px 5px 9px -9px black,5px 6px 9px -9px black;-webkit-transform: rotate(45deg);-moz-transform:rotate(45deg);-ms-transform:rotate(45deg);-o-transform:rotate(45deg);}
+.social-share ul.icns li{display: inline-block;margin:2px 7px; font-size:14px;}
+.social-share:hover .icns {display: block;}
+.social-share {position: relative;}
+.q-links > li {padding-top: 7px;}
+.q-links .social-share ul.icns {top: -22px;}

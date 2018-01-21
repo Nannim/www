@@ -1,0 +1,93 @@
+jQuery(document).ready(function(){
+"use strict";
+
+	// If no math question
+	if(typeof $("#math").val() == 'undefined') {
+
+		// Generate random math question
+		var mathenticate = {
+			bounds: {
+				lower: 5,
+				upper: 50
+			},
+			first: 0,
+			second: 0,
+			generate: function() {
+				this.first = Math.floor(Math.random() * this.bounds.lower) + 1;
+				this.second = Math.floor(Math.random() * this.bounds.upper) + 1;
+			},
+			show: function() {
+				return this.first + ' + ' + this.second + ' = ';
+			},
+			solve: function() {
+				return this.first + this.second;
+			}
+		};
+
+		mathenticate.generate();
+
+		// Generate canvas image and put the math question to the canvas
+		if (document.getElementById('canvas') != null) {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			ctx.font = "22px serif";
+			ctx.textBaseline = "middle";
+			ctx.strokeText(mathenticate.show(), 10, 10);
+		}
+
+		// Insert math calc value in the placeholder
+		var $auth = $('<input id="math" type="text" name="math" class="math-result" />');
+		$auth
+			.attr('placeholder', "Please solve the math question!")
+			.insertAfter('#canvas');
+
+		// Disable the submit button until the math question not solved
+		if (document.getElementById("submit") !=null) {
+			document.getElementById("submit").disabled = true;
+		}
+
+		// If the math question answer is correct, remove the disabled attribute from the submit button
+		$('#math').keyup(function() {
+			if (this.value == mathenticate.solve()) {
+				document.getElementById("submit").removeAttribute('disabled');
+			}
+			else {
+				// Disable the submit button until the math question not solved
+				document.getElementById("submit").disabled = true;
+			}
+		});
+
+		// Submit actions
+		jQuery('#contactform').submit(function() {
+
+			var action = jQuery(this).attr('action');
+
+			jQuery("#message").fadeOut(0, function() {
+				jQuery('#message').hide();
+
+				jQuery('#submit')
+					.attr('disabled','disabled');
+
+				jQuery.post(action, {
+						name: jQuery('#name').val(),
+						email: jQuery('#email').val(),
+						comments: jQuery('#comments').val(),
+						math: jQuery('#math').val(),
+						hem: mathenticate.solve()
+					},
+					function(data){
+						document.getElementById('message').innerHTML = data;
+						jQuery('#message').fadeIn(200);
+						jQuery('.hide').hide(0);
+						jQuery('#submit').removeAttr('disabled');
+					}
+				);
+
+			});
+
+			return false;
+
+		});
+
+	}
+
+});

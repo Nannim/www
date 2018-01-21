@@ -1,0 +1,21 @@
+jQuery(document).ready(function(){
+
+    (function($) {
+        var $body =  $('body'),
+            $navHeader = $('.sticky-wrapper'),
+            navHeaderOffsetTop;
+
+        $('#nav-button').click(function() {
+            navHeaderOffsetTop = $navHeader.offset().top;
+
+            if ($body.scrollTop() < navHeaderOffsetTop) {
+                $('html, body').animate({
+                    scrollTop: navHeaderOffsetTop
+                }, 700, 'swing');
+            }
+        });
+
+
+    })(jQuery);
+
+});

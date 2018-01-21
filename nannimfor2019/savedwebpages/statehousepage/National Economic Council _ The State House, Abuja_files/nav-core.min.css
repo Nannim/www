@@ -1,0 +1,126 @@
+.nav-lock-scroll {
+    /*overflow: hidden*/
+}
+
+.nav {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto*/
+}
+
+.nav ul {
+    display: block;
+    position: relative;
+    zoom: 1;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav a,
+.nav a:active,
+.nav a:hover,
+.nav a:visited {
+    display: block;
+    position: relative;
+}
+/* Menu borders*/
+
+nav.nav>ul>li{
+    background: url(../images/dd.png) no-repeat 100% 50%;
+}
+
+nav.nav>ul>li:last-child{
+    background-image: none;
+}
+nav.nav>ul>li>ul>li a{
+    padding: 5px 15px;
+    line-height: 1.3;
+    color:#fff;
+    font-size: 12px;
+    border-bottom: 1px #ddd solid;
+    text-transform: initial;
+    border-color:rgba(255,255,255,0.2);
+}
+nav.nav>ul>li>ul>li a:hover{
+    color: #ffae00!important;
+}
+@media only screen and (min-width:960px) {
+    .nav {
+        display: block;
+        position: relative;
+        bottom: auto;
+        overflow: visible
+    }
+
+    .nav li {
+        position: relative;
+        /*white-space: nowrap*/
+    }
+    .nav>ul>li {
+        display: inline-block
+    }
+    .nav ul {
+        display: block
+    }
+    .nav ul ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 901
+    }
+    .nav ul ul ul {
+        top: 0;
+        left: 100%;
+        z-index: 902
+    }
+    .nav ul ul ul ul {
+        z-index: 903
+    }
+    .nav ul ul ul ul ul {
+        z-index: 904
+    }
+    .nav ul ul li.nav-left>ul {
+        left: auto;
+        right: 95%
+    }
+    .nav-no-js .nav li:hover>ul {
+        display: block
+    }
+}
+
+@media only screen and (max-width:959px) {
+    .nav-no-js .nav-button:hover+.nav,
+    .nav-no-js .nav-button:hover+.nav+.nav-close,
+    .nav-no-js .nav:hover,
+    .nav-no-js .nav:hover+.nav-close {
+        display: block
+    }
+}
+/* ----------- 1024px ----------- */
+@media only screen
+and (max-width:960px) {
+    .nav{
+        background-color: #018743;
+    }
+    .nav ul{
+        background-color: #018743;
+    }
+    .nav li{
+        line-height: 1;
+    }
+    .nav li>ul{
+        display:none
+    }
+    .nav li a{
+        border-bottom: 1px #fff solid;
+        border-color:rgba(0,0,0,0.1);
+    }
+}

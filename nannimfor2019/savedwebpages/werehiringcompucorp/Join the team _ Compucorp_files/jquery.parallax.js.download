@@ -1,0 +1,24 @@
+jQuery(document).ready(function(){
+	
+	$window = jQuery(window);
+                
+   jQuery('section[data-type="background"]').each(function(){
+     var $bgobj = jQuery(this); 
+                    
+     jQuery(window).scroll(function() {
+                    
+		
+										
+		var yPos = -($window.scrollTop() / $bgobj.data('speed')); 
+		
+		
+		var coords = '50% '+ yPos + 'px';
+
+		
+		$bgobj.css({ backgroundPosition: coords });
+		
+}); 
+
+ });	
+
+}); 

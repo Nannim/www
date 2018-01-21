@@ -1,0 +1,45 @@
+		var revapi;
+
+		jQuery(document).ready(function() {
+
+			   revapi = jQuery('.tp-banner').revolution(
+				{
+				//	delay:9000,
+					startwidth:960,
+					startheight:770,
+					hideThumbs:10,
+					lazyLoad:"on",
+					fullWidth:"on",
+					forceFullWidth:"on",
+					hideArrowsOnMobile:"on",
+					hideBulletsOnMobile:"on",
+					soloArrowLeftHalign:"center",
+					soloArrowRightHalign:"center",
+					soloArrowLeftHOffset:388,
+					soloArrowRightHOffset:446,
+					soloArrowLeftValign:"top",
+					soloArrowRightValign:"top",
+					soloArrowLeftVOffset:72,
+					soloArrowRightVOffset:72,
+					stopAtSlide:1,
+					stopAfterLoops:0
+				});
+				
+				 revapi = jQuery('.tp-banner2').revolution(
+				{
+					delay:3000,
+					hideThumbs:10,
+					lazyLoad:"on",
+					onHoverStop:"off",
+					startwidth:960,
+					startheight:260
+				});
+
+		});	
+
+	jQuery(document).ready(function() {
+		if(jQuery('.blog').height()==0){
+		jQuery('.blog').remove();
+		};
+	});
+	

@@ -1,0 +1,37 @@
+// delegate all clicks on "a" tag (links)
+$(document).on("click", "a", function () {
+
+    // get the href attribute
+    var newUrl = $(this).attr("href");
+
+    // veryfy if the new url exists or is a hash
+    if (!newUrl || newUrl[0] === "#") {
+        // set that hash
+        location.hash = newUrl;
+        return;
+    }
+    // now, fadeout the html (whole page)
+    $("html").fadeOut(200, function () {
+        // when the animation is complete, set the new location
+        location = newUrl;
+    });
+    // prevent the default browser behavior.
+    return false;
+});
+
+$(document).ready(function () {
+    $(window).scroll(function () {
+        $('*[class^="prlx"]').each(function (r) {
+            var pos = $(this).offset().top;
+            var scrolled = $(window).scrollTop();
+            $('*[class^="prlx"]').css('top', -(scrolled * 0.5) + 'px');
+        });
+    });
+});
+
+jQuery(document).ready(function () {
+    $(".slicksearch").hide();
+    jQuery('#hideshow').click(function () {
+        jQuery('#slicksearch').toggle();
+    });
+});
