@@ -1,5 +1,5 @@
-*{text-align:center;}
-@import url('https://fonts.googleapis.com/css?family=Lato');
+*{text-align:center;font-family: Roboto;}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 html{width:100%;}
 div{padding:10px 10px 10px 10px;border-radius:0px;}
 h1, h2, h3, table{font-family:Calibri;}
