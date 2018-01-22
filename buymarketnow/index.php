@@ -2,6 +2,7 @@
 <title>Welcome - Buy Market Now</title>
 <link rel="stylesheet" href="buymarketnow.css" type="text/css"/>
 <link rel="shortcut icon" href="buymarketnow.jpg" type="image/jpg"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates" rel="stylesheet">
 </head>
 <body>
       <table border="0" width="100%">
@@ -24,9 +25,9 @@
         </tr>
       </table>
         <hr style="width:70%;opacity:0.2;">
-        <video autoplay controls repeat style="width:800px;height:400px;">
+        <!--<video autoplay controls repeat style="width:800px;height:400px;">
             <source src="buymarketnow.mp4" type="video/mp4"/>
-        </video>
+        </video>/-->
         <br>
         <hr style="width:90%;opacity:0.2;">
         <br>
@@ -48,14 +49,15 @@
   </tr>
   <tr>
     <td><a href="http://www.buymarketnow.com/connect/">Connect</a></td>
-    <td><a href="http://www.buymarketnow.com/help/">Help</a></td
-      ><td><a href="http://www.buymarketnow.com/tools/">Tools</a></td>
-      <td><a href="http://www.buymarketnow.com/EULA/">EULA</a></td></tr>
-    <tr>
-      <td><a href="http://www.buymarketnow.com/mail/">buymarketnow@emeraldarchies.com</a></td>
-      <td><a href="http://www.buymarketnow.com/EULA/">Copyright &copy;</a></td>
-      <td><a href="http://www.buymarketnow.com/">Buy Market Now 2017</a></td>
-      <td><a href="http://www.emeraldarchiesltd.com/">Emerald Archies LTD</a></td>
-    </tr>
+    <td><a href="http://www.buymarketnow.com/help/">Help</a></td>
+    <td><a href="http://www.buymarketnow.com/tools/">Tools</a></td>
+    <td><a href="http://www.buymarketnow.com/EULA/">EULA</a></td>
+  </tr>
+  <tr>
+    <td><a href="http://www.buymarketnow.com/mail/">buymarketnow@emeraldarchies.com</a></td>
+    <td><a href="http://www.buymarketnow.com/copyright/">Copyright &copy;</a></td>
+    <td><a href="http://www.buymarketnow.com/">Buy Market Now 2017</a></td>
+    <td><a href="http://www.emeraldarchiesltd.com/">Emerald Archies LTD</a></td>
+  </tr>
 </table>
 </div>

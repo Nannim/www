@@ -1,6 +1,7 @@
     *
     {
-      font-family:Calibri;
+      font-family: 'Montserrat Alternates', sans-serif;
+      font-size: 20px;
       text-align:center;
       text-decoration: none;
     }
@@ -10,7 +11,8 @@
       background:url("buy.png");
       border:1px;
     }
-    .footer{text-align:center;bottom:0;}
+    .footer
+    {text-align:center;bottom:0;}
     hr
     {
       width:50%;
@@ -26,9 +28,9 @@
     {
       position:relative;
       text-align:center;
-      font-size:12px;
     }
-    a{
+    a
+    {
       text-decoration:none;
       color:gray;
     }
